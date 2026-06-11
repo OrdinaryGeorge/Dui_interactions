@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+</head>
+
+<body>
+    <script>
+        console.log("[DUI Keyboard Detection] JS LOADED");
+        let last = 0;
+
+        document.addEventListener("keydown", (e) => {
+            const now = Date.now();
+            if (now - last < 10) return; // tiny throttle
+            last = now;
+
+            fetch(`https://${GetParentResourceName()}/duiKey`, {
+                method: "POST",
+                body: JSON.stringify({ key: e.key })
+            });
+        });
+    </script>
+</body>
+
+</html>

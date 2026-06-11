@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontier DUI Interactions</title>
+    <style>
+        body{
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <h1>Frontier DUI Interactions</h1>
+    <p>Welcome to the DUI interactions NUI.</p>
+    <label for="message">Message:</label>
+    <input id="message" type="text" placeholder="Enter text here" />
+    <button id="send">Send</button>
+    <script>
+        document.getElementById('send').addEventListener('click', function(){
+            const val = document.getElementById('message').value;
+            console.log('Textbox value:', val);
+        });
+
+
+        // YOU NEED THIS SOMEWHERE IN YOUR DUI JS
+        
+        window.addEventListener('message', function(event) {
+            const data = event.data;
+            if (!data || data.type !== 'key') {
+                return;
+            }
+
+            const key = data.key;
+
+            const target = document.activeElement && ['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)
+                ? document.activeElement
+                : document.body;
+
+            const keyDownEvent = new KeyboardEvent('keydown', {
+                key: key,
+                bubbles: true,
+                cancelable: true
+            });
+
+            target.dispatchEvent(keyDownEvent);
+
+            if (target !== document.body) {
+                if (key === 'Backspace') {
+                    target.value = target.value.slice(0, -1);
+                } else if (key.length === 1) {
+                    target.value += key;
+                }
+                const inputEvent = new Event('input', { bubbles: true, cancelable: true });
+                target.dispatchEvent(inputEvent);
+            }
+        });
+    </script>
+</body>
+</html>
