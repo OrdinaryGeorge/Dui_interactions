@@ -237,11 +237,12 @@ Focuses a DUI and allows mouse/keyboard interaction.
 
 ```lua
 exports['dui_interactions']:InteractWithDUI(
-    DuiTarget,
-    IsEntity,
-    Coords,
-    FocusKeyboard,
-    ResourceName
+    DuiTarget, -- Dui
+    IsEntity, -- Is it an entity you are targeting? only works forRendered target atm
+    CamCoords, -- Manual Cam coords
+    Cooords, -- Manual focus point (maybe the rntity coords if u want)
+    FocusKeyboard, -- Do u want to use the keyboard on DUI if so follow the steps down below
+    ResourceName -- the resource triggering this export
 )
 ```
 
@@ -344,12 +345,13 @@ local Success, DUI = exports['dui_interactions']:CreateRenderedTarget(
 )
 
 if Success then
-    exports['dui_interactions']:InteractWithDUI(
-        DUI,
-        true,
-        GetEntityCoords(entity),
-        true,
-        GetCurrentResourceName()
+    InteractWithDUI(
+        DUI, -- Dui
+        true, -- IsEntity? Rendered target uses an entity
+        CamCoords, -- Unused if an entity but can disable IsEntity and use your own coords
+        Cooords, -- Focus point for camera
+        true, -- Focus keyboard
+        ResourceName
     )
 end
 ```
