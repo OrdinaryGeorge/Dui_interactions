@@ -78,7 +78,7 @@ RegisterCommand('TestReplaceTexture', function()
                 label = 'Interact With Screen',
                 onSelect = function(data)
                     InteractWithDUI(Dui, false, vector3(785.3433, -1369.1003, 26.6035),
-                    vector3(785.2546, -1370.8431, 26.6427), true, 'frontier_duiinteractions')
+                    vector3(785.2546, -1370.8431, 26.6427), true, 'dui_interactions')
                 end
             }
         }

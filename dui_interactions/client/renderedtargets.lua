@@ -153,7 +153,7 @@ RegisterCommand('TestRenderedTargets', function()
             icon = 'fas fa-laptop-code',
             label = 'Use Screen',
             onSelect = function(data)
-                InteractWithDUI(DUI, true, vector4(0, 0, 0, 0), vector3(0, 0, 0), true, 'frontier_duiinteractions')
+                InteractWithDUI(DUI, true, vector4(0, 0, 0, 0), vector3(0, 0, 0), true, 'dui_interactions')
             end
         },
     })
